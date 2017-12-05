@@ -2,7 +2,7 @@
   <div class="login">
       <h3>Log In</h3>
       <input type="text" placeholder="Email" v-model="email"><br>
-      <input type="text" placeholder="Password" v-model="password"><br>
+      <input type="password" placeholder="Password" v-model="password"><br>
       <button v-on:click="login">Connect</button>
       <p>You don't have an account? You can <router-link to="/sign-up">create one</router-link></p>
   </div>
