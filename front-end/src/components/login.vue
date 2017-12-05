@@ -22,11 +22,11 @@ export default {
   methods: {
     login: function() {
       firebase.auth().signInWithEmailAndPassword(this.email, this.password).then(
-        function(user) {
-          alert('Well done! You are connected')
+        (user) => {
+          this.$router.replace('hello')
         },
-        function(err) {
-          alert('Oops. '+err.message)
+        (err) => {
+          alert('Oops. ' + err.message)
         }
       );
     }
