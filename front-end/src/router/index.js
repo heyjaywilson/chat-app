@@ -5,7 +5,6 @@ import firebase from 'firebase'
 import HelloWorld from '@/components/HelloWorld'
 import Login from '@/components/Login'
 import SignUp from '@/components/SignUp'
-import UserSettings from '@/components/UserSettings'
 
 Vue.use(Router)
 
@@ -33,14 +32,6 @@ let router = new Router({
       path: '/hello',
       name: 'HelloWorld',
       component: HelloWorld,
-      meta: {
-        requiresAuth: true
-      }
-    },
-    {
-      path:'/settings',
-      name: 'UserSettings',
-      component: UserSettings,
       meta: {
         requiresAuth: true
       }
