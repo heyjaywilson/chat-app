@@ -11,12 +11,16 @@ export default {
   name: 'SideMenu',
   data() {
     return {
-      links: ['Profile', 'All Chats', 'Settings', 'Log out']
+      links: [
+        'Profile', 'All Chats', 'Settings', 'Log out'
+        ]
     }
   }
 }
 </script>
 <style scoped>
-
+.s {
+  grid-area: s;
+}
 </style>
 

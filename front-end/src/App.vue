@@ -1,13 +1,22 @@
 <template>
-  <div id="app">
-    <img src="./assets/logo.png">
+  <div id="app" class="grid">
+    <header class="h">
+      <img class="h-img" src="./assets/logo.png">
+    </header>
     <router-view/>
+    <SideMenu></SideMenu>
   </div>
 </template>
 
 <script>
+import SideMenu from './components/SideMenu'
+import firebase from 'firebase'
+
 export default {
-  name: 'app'
+  name: 'app',
+  components:{
+    'SideMenu': SideMenu
+  }
 }
 </script>
 
@@ -19,5 +28,22 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+.grid{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: 100px 1fr;
+  grid-template-areas: 
+    "s s h h h h"
+    "s s m m m m";
+}
+.h {
+  grid-area: h;
+}
+.h-img {
+  height: 100px;
+}
+.m {
+  grid-area: m;
 }
 </style>
