@@ -1,5 +1,5 @@
 <template>
-  <div class="sign-up">
+  <div class="sign-up m">
     <p>Let's create a new account</p>
     <input type="text" placeholder="Email" v-model="email"><br>
     <input type="text" placeholder="Password" v-model="password"><br>
