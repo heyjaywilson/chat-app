@@ -1,5 +1,5 @@
 <template>
-  <div class="login">
+  <div class="login m">
       <h3>Log In</h3>
       <input type="text" placeholder="Email" v-model="email"><br>
       <input type="password" placeholder="Password" v-model="password"><br>
@@ -40,12 +40,12 @@ export default {
 }
 input {
   margin: 10px 0;
-  width: 20%;
+  width: 50%;
   padding: 15px;
 }
 button {
   margin-top: 20px;
-  width: 10%;
+  width: 20%;
   cursor: pointer;
 }
 p {
