@@ -1,9 +1,9 @@
 <template>
   <div class="s">
     <h2>Menu</h2>
-    <ul>
-      <li v-for="item in links">{{item}}</li>
-    </ul>
+    <nav>
+      <router-link v-for="item in links">item</router-link>
+    </nav>
   </div>
 </template>
 <script>
@@ -21,6 +21,9 @@ export default {
 <style scoped>
 .s {
   grid-area: s;
+}
+ul {
+  text-align: left;
 }
 </style>
 
