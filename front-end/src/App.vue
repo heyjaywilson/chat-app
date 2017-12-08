@@ -10,7 +10,6 @@
 
 <script>
 import SideMenu from './components/SideMenu'
-import firebase from 'firebase'
 
 export default {
   name: 'app',
