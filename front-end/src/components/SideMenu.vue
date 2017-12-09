@@ -2,18 +2,40 @@
   <div class="s">
     <h2>Menu</h2>
     <nav>
-      <router-link v-for="item in links">item</router-link>
+      <span v-for="routes in links"
+            v-bind:key="routes.id">{{routes.text}}<br></span>
+      <span v-on:click="logout">Logout</span>
     </nav>
   </div>
 </template>
+
 <script>
+import firebase from 'firebase'
 export default {
   name: 'SideMenu',
   data() {
     return {
       links: [
-        'Profile', 'All Chats', 'Settings', 'Log out'
+        {
+          id:0,
+          text:'Profile',
+          page:'/profile'}, 
+        {
+          id:1,
+          text:'All Chats',
+          page:'/user'},
+        {
+          id:2,
+          text:'Settings',
+          page:'/usersettings'}
         ]
+    }
+  },
+  methods: {
+    logout: function() {
+      firebase.auth().signOut().then(() => {
+        this.$router.replace('login')
+      })
     }
   }
 }
