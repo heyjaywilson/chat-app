@@ -2,8 +2,8 @@
   <div class="s">
     <h2>Menu</h2>
     <nav>
-      <span v-for="routes in links"
-            v-bind:key="routes.id">{{routes.text}}<br></span>
+      <router-link v-for="routes in links" :to="`${routes.page}`"
+            v-bind:key="routes.id">{{routes.text}}<br></router-link>
       <span v-on:click="logout">Logout</span>
     </nav>
   </div>
