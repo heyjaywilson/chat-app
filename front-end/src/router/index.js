@@ -6,6 +6,7 @@ import HelloWorld from '@/components/HelloWorld'
 import Login from '@/components/auth/Login'
 import SignUp from '@/components/auth/SignUp'
 import Profile from '@/components/profile/Profile'
+import Settings from '@/components/profile/Settings'
 
 Vue.use(Router)
 
@@ -41,6 +42,14 @@ let router = new Router({
       path: '/profile',
       name: 'Profile',
       component: Profile,
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: '/settings',
+      name: 'Settings',
+      component: Settings,
       meta: {
         requiresAuth: true
       }
