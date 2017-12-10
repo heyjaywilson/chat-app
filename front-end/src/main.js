@@ -3,12 +3,10 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
-import {fireInit} from './helpers/firebaseHelper'
 import firebase from 'firebase'
+import fire from './config'
 
 Vue.config.productionTip = false
-
-fireInit()
 
 let app;
 firebase.auth().onAuthStateChanged(function(user) {
