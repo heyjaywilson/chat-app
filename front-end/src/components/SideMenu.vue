@@ -27,7 +27,7 @@ export default {
         {
           id:2,
           text:'Settings',
-          page:'/usersettings'}
+          page:'/Settings'}
         ]
     }
   },
