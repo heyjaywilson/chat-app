@@ -1,9 +1,9 @@
 <template>
   <div class="m">
-    <h1>Settings for {{username}}</h1>
+    <h1>Settings for {{fireDisplayName}}</h1>
     <p>
       <label>Username: </label><input type="text" v-model="username"><br>
-      <button>Save changes</button>
+      <button v-on:click="save">Save changes</button>
     </p>
   </div>
 </template>
@@ -15,7 +15,21 @@ export default {
   name: 'Settings',
   data() {
     return {
-      username: fire.auth.currentUser.displayName
+      fireDisplayName:fire.auth.currentUser.displayName,
+      username: ''
+    }
+  },
+  methods: {
+    save: function() {
+      fire.auth.currentUser.updateProfile({displayName:this.username}).then(
+        ()=>{
+          alert('Updates are successful')
+          location.reload()
+        },
+        (error)=>{
+          alert(error)
+        }
+      );
     }
   }
 }
@@ -25,5 +39,8 @@ export default {
 
 button {
   margin: 20px 0;
+}
+p {
+  text-align: left;
 }
 </style>
