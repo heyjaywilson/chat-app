@@ -15,17 +15,22 @@ export default {
   name: 'Settings',
   data() {
     return {
+      // used to show firebase display name
       fireDisplayName:fire.auth.currentUser.displayName,
+      
+      // used to hold new username
       username: ''
     }
   },
   methods: {
     save: function() {
       fire.auth.currentUser.updateProfile({displayName:this.username}).then(
+        // update
         ()=>{
           alert('Updates are successful')
           location.reload()
         },
+        // show error
         (error)=>{
           alert(error)
         }
