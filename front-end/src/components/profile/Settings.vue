@@ -17,7 +17,7 @@ export default {
     return {
       // used to show firebase display name
       fireDisplayName:fire.auth.currentUser.displayName,
-      
+
       // used to hold new username
       username: ''
     }
@@ -31,8 +31,8 @@ export default {
           location.reload()
         },
         // show error
-        (error)=>{
-          alert(error)
+        (err)=>{
+          alert('Oops. '+ err.message)
         }
       );
     }
