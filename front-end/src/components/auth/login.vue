@@ -12,7 +12,7 @@
 import firebase from 'firebase'
 
 export default {
-  name: 'login',
+  name: 'Login',
   data: function() {
       return {
         email: '',
@@ -23,7 +23,7 @@ export default {
     login: function() {
       firebase.auth().signInWithEmailAndPassword(this.email, this.password).then(
         (user) => {
-          this.$router.replace('hello')
+          this.$router.replace('profile')
         },
         (err) => {
           alert('Oops. ' + err.message)
