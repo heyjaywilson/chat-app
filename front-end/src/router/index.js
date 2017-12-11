@@ -7,6 +7,7 @@ import Login from '@/components/auth/Login'
 import SignUp from '@/components/auth/SignUp'
 import Profile from '@/components/profile/Profile'
 import Settings from '@/components/profile/Settings'
+import NewUser from '@/components/profile/NewUser'
 
 Vue.use(Router)
 
@@ -29,6 +30,14 @@ let router = new Router({
       path: '/sign-up',
       name: 'SignUp',
       component: SignUp
+    },
+    {
+      path:'/newuser',
+      name: 'NewUser',
+      component: NewUser,
+      meta: {
+        requiresAuth: true
+      }
     },
     {
       path: '/hello',
