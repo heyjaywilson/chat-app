@@ -21,23 +21,10 @@ export default {
   },
   methods: {
     save: function() {
-      /** 
-       * Adds to database
-       */
-      fire.db.collection("users").doc(this.username).set(
-        {
-          name: this.username
-        }
-      ).then(
-        () => {console.log('Added data successfully')}
-      ).catch(
-        (err) => {alert('Oops. '+err.message)}
-      )
-
-      //updates auth
       fire.auth.currentUser.updateProfile({displayName:this.username}).then(
+        // update
         ()=>{
-          console.log('username added to auth')
+          console.log('username updated')
           this.$router.replace('profile')
         },
         // show error
