@@ -24,6 +24,9 @@ const mutations = {
   setDisplayName(state) {
     state.username = fire.auth.currentUser.displayName
   },
+  setUserID(state) {
+    state.user_id = fire.auth.currentUser.uid
+  },
   changeDisplayName(state, name) {
     fire.auth.currentUser.updateProfile({displayName:name}).then(
       ()=>{
