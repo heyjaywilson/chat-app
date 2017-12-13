@@ -14,7 +14,7 @@ const state = {
 
 const getters = {
   showName: state => state.username,
-  userID: state => state.user_id
+  showID: state => state.user_id
 } 
 
 /**
