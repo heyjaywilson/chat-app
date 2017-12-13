@@ -10,28 +10,32 @@
 </template>
 
 <script>
-import fire from '../../config'
+import { mapMutations, mapGetters } from "vuex";
 
 export default {
   name: 'NewUser',
+  computed: {
+    ...mapGetters([
+      'showName',
+      'showID'
+    ])
+  },
   data() {
     return {
       username: ''
     }
   },
   methods: {
+    ...mapMutations([
+      'changeDisplayName',
+      'setUserID'
+    ]),
     save: function() {
-      fire.auth.currentUser.updateProfile({displayName:this.username}).then(
-        // update
-        ()=>{
-          console.log('username updated')
-          this.$router.replace('profile')
-        },
-        // show error
-        (err)=>{
-          alert('Oops. '+ err.message)
-        }
-      );
+      this.changeDisplayName(this.username)
+      this.setUserID()
+      this.username = ''
+      console.log(this.showID)
+      this.$router.replace('profile')
     }
   }
 }
