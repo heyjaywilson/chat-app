@@ -6,7 +6,6 @@
 </template>
 
 <script>
-import fire from '../../config'
 import { mapGetters, mapMutations } from 'vuex';
 
 export default {
