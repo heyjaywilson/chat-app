@@ -1,19 +1,28 @@
 <template>
   <div class="m">
-    <h1>{{username}}'s Profile</h1>
+    <h1>{{showName}}'s Profile</h1>
     <p>This route works</p>
   </div>
 </template>
 
 <script>
 import fire from '../../config'
+import { mapGetters, mapMutations } from 'vuex';
 
 export default {
   name: 'Profile',
-  data() {
-    return {
-      username: fire.auth.currentUser.displayName
-    }
+  computed: {
+    ...mapGetters([
+      'showName'
+    ])
+  },
+  methods:{
+    ...mapMutations([
+      'setDisplayName'
+    ])
+  },
+  created: function(){
+    this.setDisplayName();
   }
 }
 </script>
