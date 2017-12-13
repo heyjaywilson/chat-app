@@ -27,7 +27,7 @@ const mutations = {
   changeDisplayName(state, name) {
     fire.auth.currentUser.updateProfile({displayName:name}).then(
       ()=>{
-        console.log('update successful')
+        console.log('update successful. username is ' + name)
         state.username = name;
       },
       (err)=>{
