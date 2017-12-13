@@ -1,6 +1,6 @@
 <template>
   <div class="m">
-    <h1>Settings for {{fireDisplayName}}</h1>
+    <h1>Settings for {{showName}}</h1>
     <p>
       <label>Username: </label><input type="text" v-model="username"><br>
       <button v-on:click="save">Save changes</button>
@@ -9,32 +9,28 @@
 </template>
 
 <script>
-import fire from '../../config'
+import {mapGetters, mapMutations} from 'vuex'
 
 export default {
   name: 'Settings',
+  computed: {
+    ...mapGetters([
+      'showName'
+    ])
+  },
   data() {
     return {
-      // used to show firebase display name
-      fireDisplayName:fire.auth.currentUser.displayName,
-
       // used to hold new username
       username: ''
     }
   },
   methods: {
-    save: function() {
-      fire.auth.currentUser.updateProfile({displayName:this.username}).then(
-        // update
-        ()=>{
-          alert('Updates are successful')
-          location.reload()
-        },
-        // show error
-        (err)=>{
-          alert('Oops. '+ err.message)
-        }
-      );
+    ...mapMutations([
+      'changeDisplayName'
+    ]),
+    save:function(){
+      this.changeDisplayName(this.username);
+      this.username = ''
     }
   }
 }
