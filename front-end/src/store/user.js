@@ -1,26 +1,22 @@
 import fire from '../config'
 
-/**
- * State
- */
+/** State**/
 const state = {
   username: '',
   user_id: ''
 }
 
-/**
- * Getters
- */
-
+/** Getters**/
 const getters = {
   showName: state => state.username,
   showID: state => state.user_id
 } 
 
-/**
- * Mutations
- */
+/**Mutations**/
 const mutations = {
+  /**
+   * All used to update user names and IDs
+   */
   setDisplayName(state) {
     state.username = fire.auth.currentUser.displayName
   },

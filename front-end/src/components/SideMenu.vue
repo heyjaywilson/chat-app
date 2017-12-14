@@ -2,9 +2,12 @@
   <div class="s">
     <h2>Menu</h2>
     <nav>
-      <router-link v-for="routes in links" :to="`${routes.page}`"
-            v-bind:key="routes.id">{{routes.text}}<br></router-link>
-      <span v-on:click="logout">Logout</span>
+      <router-link 
+        class="nav-item"
+        v-for="routes in links" 
+        :to="`${routes.page}`"
+        v-bind:key="routes.id">{{ routes.text }}</router-link>
+      <span v-on:click="logout" class="nav-item">Logout</span>
     </nav>
   </div>
 </template>
@@ -44,8 +47,20 @@ export default {
 .s {
   grid-area: s;
 }
-ul {
-  text-align: left;
+.nav-item {
+  display: block;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin: auto;
+  width: 50%;
+  text-decoration: none;
+}
+.router-link-active {
+  background-color: rgb(46, 46, 46);
+  color: rgb(200,200,200);
+  text-decoration: none;
+  font-weight: bold;
+  border-radius: 5px;
 }
 </style>
 
