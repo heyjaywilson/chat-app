@@ -64,6 +64,7 @@ const mutations = {
         // TODO: HAS TO BE BETTER WAY THAN CLEARING STATE
         state.allMessages=[]
         querySnapshot.forEach(function(doc) {
+          console.log({message: doc.data().message, sender: doc.data().user, id: count}+doc.id)
           state.allMessages.push({message: doc.data().message, sender: doc.data().user, id: count})
           count+=1
         })
