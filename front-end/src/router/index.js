@@ -8,6 +8,7 @@ import SignUp from '@/components/auth/SignUp'
 import Profile from '@/components/profile/Profile'
 import Settings from '@/components/profile/Settings'
 import NewUser from '@/components/profile/NewUser'
+import AllChats from '@/components/chats/AllChats'
 
 Vue.use(Router)
 
@@ -40,9 +41,9 @@ let router = new Router({
       }
     },
     {
-      path: '/hello',
-      name: 'HelloWorld',
-      component: HelloWorld,
+      path: '/allchats',
+      name: 'AllChats',
+      component: AllChats,
       meta: {
         requiresAuth: true
       }

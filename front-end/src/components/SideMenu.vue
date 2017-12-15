@@ -2,9 +2,9 @@
   <div class="s">
     <h2>Menu</h2>
     <nav>
-      <router-link 
+      <router-link
         class="nav-item"
-        v-for="routes in links" 
+        v-for="routes in links"
         :to="`${routes.page}`"
         v-bind:key="routes.id">{{ routes.text }}</router-link>
       <span v-on:click="logout" class="nav-item">Logout</span>
@@ -22,11 +22,11 @@ export default {
         {
           id:0,
           text:'Profile',
-          page:'/profile'}, 
+          page:'/profile'},
         {
           id:1,
           text:'All Chats',
-          page:'/user'},
+          page:'/allchats'},
         {
           id:2,
           text:'Settings',
@@ -63,4 +63,3 @@ export default {
   border-radius: 5px;
 }
 </style>
-

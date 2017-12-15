@@ -14,7 +14,7 @@ export default {
       msg: 'HI'
     }
   },
-  methods: { 
+  methods: {
   }
 }
 </script>
