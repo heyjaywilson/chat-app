@@ -66,6 +66,7 @@ export default {
         user: this.showName
         })
       console.log('Message being sent: ' + this.message)
+      this.getAllMessages({id:this.showCurrentChat[1]})
       this.message = ''
     },
     getMessages: function(){

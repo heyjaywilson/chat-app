@@ -53,19 +53,27 @@ const mutations = {
     this.currentChat = [chatInfo.name, chatInfo.id]
   },
   sendMessage(state,info) {
+    var date = new Date();
+    var utc = date.getTime();
     console.log(state.currentChat[1])
-    console.log(info)
-    fire.db.collection('conversations').doc(info.id).collection('messages').add({message: info.message, user: info.user})
+    console.log(info, + utc)
+    fire.db.collection('conversations').doc(info.id).collection('messages')
+        .add({
+          time:utc,
+          message: info.message,
+          user: info.user})
   },
   getAllMessages(state,info) {
-    fire.db.collection('conversations').doc(info.id).collection('messages').where('message','>','')
+    var ref = fire.db.collection('conversations').doc(info.id).collection('messages');
+
+    ref.where('time', '>',0).orderBy('time')
       .onSnapshot(function(querySnapshot) {
         var count=0;
         // TODO: HAS TO BE BETTER WAY THAN CLEARING STATE
         state.allMessages=[]
         querySnapshot.forEach(function(doc) {
-          console.log({message: doc.data().message, sender: doc.data().user, id: count}+doc.id)
-          state.allMessages.push({message: doc.data().message, sender: doc.data().user, id: count})
+          console.log({id: doc.id, message: doc.data().message, sender: doc.data().user, msgid: count})
+          state.allMessages.push({id: doc.id, message: doc.data().message, sender: doc.data().user, msgid: count})
           count+=1
         })
         console.log(state.allMessages)
