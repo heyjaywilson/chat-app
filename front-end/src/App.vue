@@ -3,8 +3,7 @@
     <header class="h">
       <img class="h-img" src="./assets/logo.png">
     </header>
-    <transition>
-    <router-view/></transition>
+    <router-view/>
     <SideMenu></SideMenu>
   </div>
 </template>
