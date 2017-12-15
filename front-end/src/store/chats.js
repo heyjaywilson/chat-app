@@ -11,6 +11,10 @@ const getters = {
 }
 
 const mutations = {
+  emptyChats(state) {
+    state.allChats = []
+    state.userChats = []
+  },
   getAllChats(state) {
     fire.db.collection('conversations').get().then((querySnapshot) => {
                 querySnapshot.forEach((doc) => {

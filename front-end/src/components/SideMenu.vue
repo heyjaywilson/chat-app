@@ -14,6 +14,7 @@
 
 <script>
 import firebase from 'firebase'
+import { mapMutations } from 'vuex'
 export default {
   name: 'SideMenu',
   data() {
@@ -35,8 +36,12 @@ export default {
     }
   },
   methods: {
+    ...mapMutations([
+      'emptyChats'
+    ]),
     logout: function() {
       firebase.auth().signOut().then(() => {
+        this.emptyChats()
         this.$router.replace('login')
       })
     }
