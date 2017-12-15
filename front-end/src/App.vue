@@ -31,7 +31,7 @@ export default {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
   grid-template-rows: 100px 1fr;
-  grid-template-areas: 
+  grid-template-areas:
     "s s h h h h h h h"
     "s s m m m m m m m";
 }

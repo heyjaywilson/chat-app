@@ -32,9 +32,6 @@ export default {
     addNewChat: function(){
       this.addChat(this.chatName)
     }
-  },
-  created: function(){
-    this.getAllChats();
   }
 }
 </script>

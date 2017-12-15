@@ -10,6 +10,7 @@
 
 <script>
 import firebase from 'firebase'
+import { mapMutations } from 'vuex'
 
 export default {
   name: 'Login',
@@ -20,9 +21,14 @@ export default {
       }
   },
   methods: {
+    ...mapMutations([
+      'setDisplayName', 'getAllChats'
+    ]),
     login: function() {
       firebase.auth().signInWithEmailAndPassword(this.email, this.password).then(
         (user) => {
+          this.setDisplayName()
+          this.getAllChats()
           this.$router.replace('profile')
         },
         (err) => {
