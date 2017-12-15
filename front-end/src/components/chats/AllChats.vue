@@ -16,20 +16,31 @@
 
     <!--Chat display-->
     <section class="msg">
+      <button type="button" name="button" v-on:click = "getMessages">Get chats</button>
+
       <h1 class="chatname">{{showCurrentChat[0]}}</h1>
+
+      <Message v-for="mess in showAllMessages" :key="mess.id" :message="mess.message" :sender="mess.sender"></Message>
+
       <input type="text" v-model="message"><button type="button" v-on:click="send">Send</button>
     </section>
   </div>
 </template>
 
 <script>
+import Message from './Message'
+
 import { mapGetters, mapMutations } from 'vuex'
 
 export default {
   name: 'AllChats',
+  components:{
+    'Message': Message
+  } ,
   computed: {
     ...mapGetters([
-      'showName', 'showAll', 'showCurrentChat'
+      'showName', 'showAll', 'showCurrentChat',
+      'showAllMessages'
     ])
   },
   data() {
@@ -40,19 +51,28 @@ export default {
   },
   methods: {
     ...mapMutations([
-      'getAllChats', 'addChat', 'emptyChats', 'setInitialChat'
+      'getAllChats', 'addChat', 'emptyChats',
+      'setInitialChat', 'changeChat', 'sendMessage',
+      'setDisplayName','getAllMessages'
     ]),
     addNewChat: function(){
       this.addChat(this.chatName)
     },
     send: function(){
+      console.log(this.showName)
+      this.sendMessage({
+        id: this.showCurrentChat[1],
+        message: this.message,
+        user: this.showName
+        })
       console.log('Message being sent: ' + this.message)
       this.message = ''
+    },
+    getMessages: function(){
+      this.getAllMessages({
+        id: this.showCurrentChat[1]
+      })
     }
-  },
-  created: function() {
-    this.emptyChats()
-    this.getAllChats()
   }
 
 }

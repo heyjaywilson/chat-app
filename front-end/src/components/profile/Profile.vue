@@ -19,6 +19,9 @@ export default {
     ...mapMutations([
       'setDisplayName'
     ])
+  },
+  created: function(){
+    this.setDisplayName
   }
 }
 </script>
