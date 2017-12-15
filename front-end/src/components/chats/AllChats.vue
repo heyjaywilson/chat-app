@@ -1,12 +1,24 @@
 <template>
   <div class="chats m">
-    <h1>All chats that are public</h1>
-    <ul>
-      <li v-for="chat in showAll">{{chat}}</li>
-    </ul>
-    <h1>Create a new chat</h1>
-    <label>Chat name</label><input type="text" v-model="chatName"><br>
-    <button type="button" v-on:click="addNewChat">Add Chat</button>
+    <!--list of chats and the ability to add new chats-->
+    <section class="list">
+      <!-- CREATE NEW CHAT -->
+      <h1>create new chat</h1>
+      <label>Chat name: </label><input type="text" v-model="chatName"><br>
+      <button type="button" v-on:click="addNewChat">Add Chat</button>
+
+      <!-- LIST OF CHATS -->
+      <h1>all public chats</h1>
+      <ul>
+        <li v-for="chat in showAll">{{chat.name}}</li>
+      </ul>
+    </section>
+
+    <!--Chat display-->
+    <section class="msg">
+      <h1 class="chatname">{{showCurrentChat[0]}}</h1>
+      <input type="text" v-model="message"><button type="button" v-on:click="send">Send</button>
+    </section>
   </div>
 </template>
 
@@ -17,27 +29,56 @@ export default {
   name: 'AllChats',
   computed: {
     ...mapGetters([
-      'showName', 'showAll', 'showName'
+      'showName', 'showAll', 'showCurrentChat'
     ])
   },
   data() {
     return {
-      chatName: ''
+      chatName: '',
+      message:''
     }
   },
   methods: {
     ...mapMutations([
-      'getAllChats', 'addChat'
+      'getAllChats', 'addChat', 'emptyChats', 'setInitialChat'
     ]),
     addNewChat: function(){
       this.addChat(this.chatName)
+    },
+    send: function(){
+      console.log('Message being sent: ' + this.message)
+      this.message = ''
     }
+  },
+  created: function() {
+    this.emptyChats()
+    this.getAllChats()
   }
+
 }
 </script>
 
 <style>
 ul {
   text-align: left
+}
+
+.chats {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 5%;
+  grid-template-areas:
+  "l msg msg .";
+  grid-column-gap: 10px;
+}
+.list {
+  grid-area: l;
+}
+.msg {
+  grid-area: msg;
+  border: 2px black solid;
+  border-radius: 5px;
+}
+.chatname {
+  color: blue;
 }
 </style>

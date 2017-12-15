@@ -3,11 +3,13 @@ import fire from '../config'
 const state = {
   allChats: [],
   userChats: [],
+  currentChat: []
 }
 
 const getters = {
   showAll: state => state.allChats,
-  showUserAll: state => state.userChats
+  showUserAll: state => state.userChats,
+  showCurrentChat: state => state.currentChat
 }
 
 const mutations = {
@@ -18,12 +20,18 @@ const mutations = {
   getAllChats(state) {
     fire.db.collection('conversations').get().then((querySnapshot) => {
                 querySnapshot.forEach((doc) => {
-                    state.allChats.push(doc.data().chat_name);
+                    state.allChats.push({
+                      name: doc.data().chat_name,
+                      id: doc.id
+                    })
                     console.log(doc.data().chat_name)
-                    console.log(state.allChats)
                 })
+                state.currentChat = [state.allChats[0].name, state.allChats[0].id]
             })
-    console.log('getAllChats fired')
+  },
+  setInitialChat(state){
+    state.currentChat = [state.allChats[0].name, state.allChats[0].id]
+    console.log(state.allChats)
   },
   addChat(state, name) {
     fire.db.collection('conversations').add({
