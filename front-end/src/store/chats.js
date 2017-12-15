@@ -61,6 +61,8 @@ const mutations = {
     fire.db.collection('conversations').doc(info.id).collection('messages').where('message','>','')
       .onSnapshot(function(querySnapshot) {
         var count=0;
+        // TODO: HAS TO BE BETTER WAY THAN CLEARING STATE
+        state.allMessages=[]
         querySnapshot.forEach(function(doc) {
           state.allMessages.push({message: doc.data().message, sender: doc.data().user, id: count})
           count+=1
