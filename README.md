@@ -12,6 +12,6 @@ A chat room app built using [Vue.js](vuejs.org) and [Google Firebase](https://fi
 
 - ✅ Log in by email or Google account
 - ✅ Users create and use a username
-- ❌ Users can select which chat room to be a part of
-- ❌ Users can submit messages and the room will be updated in real time
+- ✅ Users can select which chat room to be a part of
+- ✅ Users can submit messages and the room will be updated in real time
 - ✅ Users can sign out of the application
