@@ -76,7 +76,7 @@ export default {
         }
       ))
     }
-    
+
     else {
       firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION).then(
     firebase.auth().signInWithEmailAndPassword(this.email, this.password).then(
@@ -99,6 +99,9 @@ export default {
 </script>
 
 <style scoped>
+/*
+ * TODO: Work on styling
+ */
 .login {
   margin-top: 40px;
 }
