@@ -1,15 +1,18 @@
 <template>
-  <div class="m">
-    <h1>Settings for {{showName}}</h1>
-    <p>
-      <label>Username: </label><input type="text" v-model="username"><br>
-      <button v-on:click="save">Save changes</button>
-    </p>
-  </div>
+<div class="m">
+  <h1>Settings for {{showName}}</h1>
+  <p>
+    <label>Username: </label><input type="text" v-model="username"><br>
+    <button v-on:click="save">Save changes</button>
+  </p>
+</div>
 </template>
 
 <script>
-import {mapGetters, mapMutations} from 'vuex'
+import {
+  mapGetters,
+  mapMutations
+} from 'vuex'
 
 export default {
   name: 'Settings',
@@ -28,7 +31,7 @@ export default {
     ...mapMutations([
       'changeDisplayName'
     ]),
-    save:function(){
+    save: function() {
       this.changeDisplayName(this.username);
       this.username = ''
     }
@@ -37,10 +40,10 @@ export default {
 </script>
 
 <style>
-
 button {
   margin: 20px 0;
 }
+
 p {
   text-align: left;
 }
