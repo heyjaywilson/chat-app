@@ -1,0 +1,38 @@
+/* BUTTONS */
+button {
+  margin-top: 10px;
+  font-size: 1em;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: box-shadow 0.5s;
+}
+
+button:hover {
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.45);
+}
+
+.btnAuth {
+  width: 40%;
+  height: 40px;
+  background-color: rgba( 30, 200, 30, 0.9);
+  border: none;
+}
+
+.btnGoogle {
+  width: 40%;
+  height: 40px;
+  background-color: rgba(219, 50, 54, 1);
+  border-radius: 5px;
+  border: none;
+  color: rgb(255,255,255);
+}
+
+/* INPUT */
+input {
+  margin: 10px 0;
+  padding: 15px;
+}
+
+input.auth {
+  width: 20%;
+}
