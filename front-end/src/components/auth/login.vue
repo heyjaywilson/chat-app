@@ -58,6 +58,7 @@ export default {
         )
       }
     },
+
     login: function() {
       if(this.persist){
         firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL).then(
@@ -75,6 +76,7 @@ export default {
         }
       ))
     }
+    
     else {
       firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION).then(
     firebase.auth().signInWithEmailAndPassword(this.email, this.password).then(
