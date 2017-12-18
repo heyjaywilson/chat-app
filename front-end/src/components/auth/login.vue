@@ -1,16 +1,14 @@
 <template>
 <div class="login m">
-  <h3>Log In</h3>
-  <label>Email: </label>
-  <input type="text" placeholder="Email" v-model="email"><br>
+  <h1>Log In</h1>
+  <input class="auth" type="text" placeholder="Email" v-model="email"><br>
 
-  <label>Password: </label>
-  <input type="password" placeholder="Password" v-model="password"><br>
+  <input class="auth" type="password" placeholder="Password" v-model="password"><br>
 
-  <label>Check this box if you don't want to log off by closing a window </label>
-  <input type="checkbox" v-model="persist"><br>
+  <input type="checkbox" v-model="persist"><label> Check this box if you don't want to log off by closing a window </label><br>
 
-  <button v-on:click="login">Connect</button><button v-on:click="google">Login with Google</button>
+  <button v-on:click="login" class="btnAuth">Login</button><br>
+  <button class="btnGoogle" v-on:click="google">Login with Google</button>
   <p>You don't have an account? You can
     <router-link to="/sign-up">create one</router-link>
   </p>
@@ -96,26 +94,6 @@ export default {
 </script>
 
 <style scoped>
-/*
- * TODO: Work on styling
- */
-
-.login {
-  margin-top: 40px;
-}
-
-input {
-  margin: 10px 0;
-  width: 50%;
-  padding: 15px;
-}
-
-button {
-  margin-top: 20px;
-  width: 20%;
-  cursor: pointer;
-}
-
 p {
   margin-top: 40px;
 }
