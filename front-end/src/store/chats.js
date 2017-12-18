@@ -1,12 +1,26 @@
 import fire from '../config'
 
+var date = new Date();
+var utc = date.getTime();
+
 const state = {
   // Chats
   allChats: [],
-  userChats: [],
-  currentChat: [],
-  //message
+   /** ALL CHATS ARRAY
+    * {
+    *   name: chat_name,
+    *   id: document_id
+    * }
+    */
+  currentChat: [], // [chat_name, chat_id]
+
+  //messages
   allMessages: []
+  /**
+   * {time: time_msg_sent,
+   *  messge: msg_content
+   *  user: user_that_sent_msg}
+   */
 }
 
 const getters = {
@@ -26,7 +40,7 @@ const mutations = {
                 querySnapshot.forEach((doc) => {
                     state.allChats.push({
                       name: doc.data().chat_name,
-                      id: doc.id
+                      id: doc.id,
                     })
                     console.log(doc.data().chat_name)
                 })
@@ -37,26 +51,27 @@ const mutations = {
     state.currentChat = [state.allChats[0].name, state.allChats[0].id]
     console.log(state.allChats)
   },
-  addChat(state, name) {
+  addChat(state, cname) {
     fire.db.collection('conversations').add({
-      chat_name: name
+      chat_name: cname
     }).then(function(docRef) {
         console.log("Document written with ID: ", docRef.id)
+        state.allChats.push({
+          name: cname,
+          id: docRef.id
+        })
       })
       .catch(function(error) {
         console.error("Error adding document: ", error)
       })
-    state.allChats.push(name)
-    state.userChats.push(name)
   },
   changeChat(state, chatInfo) {
     this.currentChat = [chatInfo.name, chatInfo.id]
   },
   sendMessage(state,info) {
-    var date = new Date();
-    var utc = date.getTime();
     console.log(state.currentChat[1])
     console.log(info, + utc)
+    state.allMessages.push({time:utc, message: info.message, user: info.user})
     fire.db.collection('conversations').doc(info.id).collection('messages')
         .add({
           time:utc,

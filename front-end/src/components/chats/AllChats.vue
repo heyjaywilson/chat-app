@@ -19,8 +19,9 @@
     <button type="button" name="button" v-on:click="getMessages">Get chats</button>
 
     <h1 class="chatname">{{showCurrentChat[0]}}</h1>
-    <input type="text" v-model="message" class="messageBox"><button type="button" v-on:click="send">Send</button>
+
     <Message v-for="mess in showAllMessages" :key="mess.id" :message="mess.message" :sender="mess.sender"></Message>
+    <input type="text" v-model="message" class="messageBox"><button type="button" v-on:click="send">Send</button>
   </section>
 </div>
 </template>
@@ -67,9 +68,7 @@ export default {
         user: this.showName
       })
       console.log('Message being sent: ' + this.message)
-      this.getAllMessages({
-        id: this.showCurrentChat[1]
-      })
+
       this.message = ''
     },
     getMessages: function() {
@@ -85,6 +84,10 @@ export default {
 <style>
 ul {
   text-align: left
+}
+
+h1 {
+  text-align: center;
 }
 
 .chats {

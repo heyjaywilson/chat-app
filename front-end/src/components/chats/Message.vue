@@ -1,6 +1,6 @@
 <template lang="html">
   <div class="message">
-    <p>{{sender}}:<br>{{message}}</p>
+    <p><span class="sender">{{sender}}</span>:<br>{{message}}</p>
   </div>
 </template>
 
@@ -14,5 +14,8 @@ export default {
 <style lang="css">
 .message{
   text-align: left;
+}
+.sender {
+  color: rgb(149, 149, 149);
 }
 </style>
