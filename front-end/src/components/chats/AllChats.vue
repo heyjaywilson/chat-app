@@ -58,6 +58,7 @@ export default {
     ]),
     addNewChat: function() {
       this.addChat(this.chatName)
+      this.chatName = ''
     },
     selectChat: function(info) {
       this.changeChat(info)
