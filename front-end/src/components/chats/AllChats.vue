@@ -1,12 +1,13 @@
 <template>
 <div class="chats m">
   <!--list of chats and the ability to add new chats-->
-  <section class="list">
+  <section class="newChat">
     <!-- CREATE NEW CHAT -->
     <h1>create new chat</h1>
     <label>Chat name: </label><input type="text" v-model="chatName" class="newChat"><br>
     <button type="button" v-on:click="addNewChat">Add Chat</button>
-
+  </section>
+  <section class="list">
     <!-- LIST OF CHATS -->
     <h1>all public chats</h1>
     <ul>
@@ -17,10 +18,13 @@
   <!--Chat display-->
   <section class="msg">
 
-    <h1 class="chatname">{{showCurrentChat[0]}}</h1>
+    <h1>{{showCurrentChat[0]}}</h1>
 
     <Message v-for="mess in showAllMessages" :key="mess.id" :message="mess.message" :sender="mess.sender"></Message>
-    <input type="text" v-model="message" class="messageBox"><button type="button" v-on:click="send">Send</button>
+    <div class="messageInput">
+      <input type="text" v-model="message" class="messageBox">
+      <button type="button" v-on:click="send">Send</button>
+    </div>
   </section>
 </div>
 </template>
@@ -94,22 +98,33 @@ ul {
 
 h1 {
   text-align: center;
+  font-size: 1.85em;
+}
+
+.msg>h1 {
+  margin: 0;
+  padding: 0;
 }
 
 .chats {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 5%;
-  grid-template-areas: "l msg msg .";
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-areas: "n msg msg l";
   grid-column-gap: 10px;
 }
 
 .newChat {
-  padding: 5px;
+  grid-area: n;
 }
 
 .list {
   grid-area: l;
   text-align: left;
+}
+
+.list>ul>li {
+  color: rgb(100, 181, 135);
+  font-size: 1.25em;
 }
 
 .msg {
@@ -120,13 +135,14 @@ h1 {
   text-align: left;
 }
 
-.chatname {
-  color: blue;
-}
-
 .messageBox {
   width: 80%;
   padding: 5px;
   margin-right: 5px;
+}
+
+.messageInput {
+  display: flex;
+  justify-content: space-evenly;
 }
 </style>

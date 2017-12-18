@@ -1,10 +1,14 @@
 /* BUTTONS */
 button {
   margin-top: 10px;
+  height: 40px;
   font-size: 1em;
+  border: none;
   border-radius: 5px;
   cursor: pointer;
-  transition: box-shadow 0.5s;
+  transition: box-shadow 0.25s;
+  background-color: rgb(46,64,83);
+  color: rgb(255,255,255);
 }
 
 button:hover {
@@ -15,7 +19,7 @@ button:hover {
   width: 40%;
   height: 40px;
   background-color: rgba( 30, 200, 30, 0.9);
-  border: none;
+  color: rgb(0, 0, 0);
 }
 
 .btnGoogle {
@@ -23,14 +27,14 @@ button:hover {
   height: 40px;
   background-color: rgba(219, 50, 54, 1);
   border-radius: 5px;
-  border: none;
-  color: rgb(255,255,255);
 }
 
 /* INPUT */
 input {
   margin: 10px 0;
   padding: 15px;
+  border: 1px solid black;
+  border-radius: 5px;
 }
 
 input.auth {
