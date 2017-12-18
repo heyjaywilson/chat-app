@@ -10,13 +10,12 @@
     <!-- LIST OF CHATS -->
     <h1>all public chats</h1>
     <ul>
-      <li v-for="chat in showAll">{{chat.name}}</li>
+      <li v-for="chat in showAll" v-on:click="selectChat({name: chat.name, id: chat.id})">{{chat.name}}</li>
     </ul>
   </section>
 
   <!--Chat display-->
   <section class="msg">
-    <button type="button" name="button" v-on:click="getMessages">Get chats</button>
 
     <h1 class="chatname">{{showCurrentChat[0]}}</h1>
 
@@ -59,6 +58,12 @@ export default {
     ]),
     addNewChat: function() {
       this.addChat(this.chatName)
+    },
+    selectChat: function(info) {
+      this.changeChat(info)
+      this.getAllMessages({
+        id: this.showCurrentChat[1]
+      })
     },
     send: function() {
       console.log(this.showName)

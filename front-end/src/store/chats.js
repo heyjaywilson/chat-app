@@ -4,7 +4,6 @@ var date = new Date();
 var utc = date.getTime();
 
 const state = {
-  // Chats
   allChats: [],
    /** ALL CHATS ARRAY
     * {
@@ -13,8 +12,8 @@ const state = {
     * }
     */
   currentChat: [], // [chat_name, chat_id]
-
-  //messages
+  //--------------------------------------------------
+  //--------------------------------------------------
   allMessages: []
   /**
    * {time: time_msg_sent,
@@ -47,7 +46,7 @@ const mutations = {
                 state.currentChat = [state.allChats[0].name, state.allChats[0].id]
             })
   },
-  setInitialChat(state){
+  setInitialChat(state) {
     state.currentChat = [state.allChats[0].name, state.allChats[0].id]
     console.log(state.allChats)
   },
@@ -66,7 +65,8 @@ const mutations = {
       })
   },
   changeChat(state, chatInfo) {
-    this.currentChat = [chatInfo.name, chatInfo.id]
+    state.currentChat = [chatInfo.name, chatInfo.id]
+    console.log(state.currentChat)
   },
   sendMessage(state,info) {
     console.log(state.currentChat[1])
