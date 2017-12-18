@@ -10,7 +10,7 @@ const state = {
 const getters = {
   showName: state => state.username,
   showID: state => state.user_id
-} 
+}
 
 /**Mutations**/
 const mutations = {

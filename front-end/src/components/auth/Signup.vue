@@ -1,11 +1,11 @@
 <template>
-  <div class="sign-up m">
-    <p>Let's create a new account</p>
-    <input type="text" placeholder="Email" v-model="email"><br>
-    <input type="text" placeholder="Password" v-model="password"><br>
-    <button v-on:click="signUp">Sign Up</button>
-    <span><router-link to="/login">or go back to login</router-link>.</span>
-  </div>
+<div class="sign-up m">
+  <p>Let's create a new account</p>
+  <input type="text" placeholder="Email" v-model="email"><br>
+  <input type="text" placeholder="Password" v-model="password"><br>
+  <button v-on:click="signUp">Sign Up</button>
+  <span><router-link to="/login">or go back to login</router-link>.</span>
+</div>
 </template>
 
 <script>
@@ -14,10 +14,10 @@ import firebase from 'firebase'
 export default {
   name: 'SignUp',
   data: function() {
-      return {
-        email: '',
-        password: ''
-      }
+    return {
+      email: '',
+      password: ''
+    }
   },
   methods: {
     signUp: function() {
@@ -26,7 +26,7 @@ export default {
           this.$router.replace('newuser')
         },
         (err) => {
-          alert('Oops. '+err.message);
+          alert('Oops. ' + err.message);
         }
       );
     }
@@ -44,11 +44,13 @@ input {
   width: 20%;
   padding: 15px;
 }
+
 button {
   margin-top: 10px;
   width: 10%;
   cursor: pointer;
 }
+
 span {
   display: block;
   margin-top: 20px;
