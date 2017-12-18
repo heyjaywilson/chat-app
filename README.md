@@ -1,14 +1,10 @@
-[Web application](https://vue-chat-c585d.firebaseapp.com/#/login) | [GitHub repo](https://github.com/maeganjwilson/chat-app) | [Website describing project](https://maeganjwilson.github.io/chat-app/)
+[Web application](https://vue-chat-c585d.firebaseapp.com/#/login)
 
----
-
-#### November 2017 - Present (this application is currently under development)
-
-### Description
+## Description
 
 A chat room app built using [Vue.js](vuejs.org) and [Google Firebase](https://firebase.google.com/). Vue is the framework the web application is written with. Google Firebase handles the database of users and messages, user authentication, and hosting.
 
-### Features
+## Features
 
 ✅ = implemented
 
