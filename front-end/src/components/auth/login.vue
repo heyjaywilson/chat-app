@@ -3,13 +3,15 @@
       <h3>Log In</h3>
       <input type="text" placeholder="Email" v-model="email"><br>
       <input type="password" placeholder="Password" v-model="password"><br>
-      <button v-on:click="login">Connect</button>
+      <button v-on:click="login">Connect</button><button v-on:click="google">Login with Google</button>
       <p>You don't have an account? You can <router-link to="/sign-up">create one</router-link></p>
   </div>
 </template>
 
 <script>
 import firebase from 'firebase'
+
+var provider = new firebase.auth.GoogleAuthProvider();
 
 export default {
   name: 'Login',
@@ -20,15 +22,33 @@ export default {
       }
   },
   methods: {
+    google: function() {
+      firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION).then(
+        firebase.auth().signInWithPopup(provider).then(
+          (user)=> {
+              this.$router.replace('profile')
+          },
+          (err) => {
+            alert('Oops. '+ err.message)
+          }
+        )
+      )
+    },
     login: function() {
+      firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION).then(
       firebase.auth().signInWithEmailAndPassword(this.email, this.password).then(
         (user) => {
-          this.$router.replace('profile')
+          if (user == null) {
+            this.$router.replace('newuser')
+          }
+          else {
+            this.$router.replace('profile')
+          }
         },
         (err) => {
           alert('Oops. ' + err.message)
         }
-      );
+      ))
     }
   }
 }
