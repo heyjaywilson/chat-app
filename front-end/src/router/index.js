@@ -13,6 +13,7 @@ import AllChats from '@/components/chats/AllChats'
 Vue.use(Router)
 
 let router = new Router({
+  mode: 'history',
   routes: [
     {
       path: '*',
