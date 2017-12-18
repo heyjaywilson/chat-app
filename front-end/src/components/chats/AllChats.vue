@@ -4,7 +4,7 @@
   <section class="newChat">
     <!-- CREATE NEW CHAT -->
     <h1>create new chat</h1>
-    <label>Chat name: </label><input type="text" v-model="chatName" class="newChat"><br>
+    <label>Chat name: </label><input type="text" v-model="chatName" class="chatNameBox"><br>
     <button type="button" v-on:click="addNewChat">Add Chat</button>
   </section>
   <section class="list">
@@ -115,6 +115,10 @@ h1 {
 
 .newChat {
   grid-area: n;
+}
+
+.chatNameBox {
+  padding: 5px;
 }
 
 .list {
