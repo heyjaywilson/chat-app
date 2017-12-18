@@ -19,6 +19,7 @@ const mutations = {
    */
   setDisplayName(state) {
     state.username = fire.auth.currentUser.displayName
+    console.log(state.username)
   },
   setUserID(state) {
     state.user_id = fire.auth.currentUser.uid

@@ -23,6 +23,7 @@ export default {
       'setDisplayName'
     ])
   },
+
   created: function() {
     this.setDisplayName();
   }

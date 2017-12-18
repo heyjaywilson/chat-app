@@ -17,6 +17,9 @@
 
 <script>
 import firebase from 'firebase'
+import {
+  mapMutations
+} from 'vuex'
 
 var provider = new firebase.auth.GoogleAuthProvider();
 
@@ -30,6 +33,9 @@ export default {
     }
   },
   methods: {
+    ...mapMutations([
+      'setDisplayName', 'getAllChats'
+    ]),
     google: function() {
       console.log(this.persist)
 
@@ -37,6 +43,8 @@ export default {
         firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL).then(
           firebase.auth().signInWithPopup(provider).then(
             (user) => {
+              this.setDisplayName()
+              this.getAllChats()
               this.$router.replace('profile')
             },
             (err) => {
@@ -48,6 +56,8 @@ export default {
         firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION).then(
           firebase.auth().signInWithPopup(provider).then(
             (user) => {
+              this.setDisplayName()
+              this.getAllChats()
               this.$router.replace('profile')
             },
             (err) => {
@@ -63,11 +73,9 @@ export default {
         firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL).then(
           firebase.auth().signInWithEmailAndPassword(this.email, this.password).then(
             (user) => {
-              if (user == null) {
-                this.$router.replace('newuser')
-              } else {
-                this.$router.replace('profile')
-              }
+              this.setDisplayName()
+              this.getAllChats()
+              this.$router.replace('profile')
             },
             (err) => {
               alert('Oops. ' + err.message)
@@ -77,11 +85,9 @@ export default {
         firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION).then(
           firebase.auth().signInWithEmailAndPassword(this.email, this.password).then(
             (user) => {
-              if (user == null) {
-                this.$router.replace('newuser')
-              } else {
-                this.$router.replace('profile')
-              }
+              this.setDisplayName()
+              this.getAllChats()
+              this.$router.replace('profile')
             },
             (err) => {
               alert('Oops. ' + err.message)
