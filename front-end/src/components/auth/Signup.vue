@@ -5,7 +5,7 @@
   <input class="auth" type="text" placeholder="Password" v-model="password"><br>
   <button v-on:click="signUp" class="btnAuth">Sign Up</button><br>
   <button class="btnGoogle" v-on:click="google">Sign Up with Google</button>
-  <span><router-link to="/login">or go back to login</router-link>.</span>
+  <p>If you have an account, <router-link to="/login">go back to login</router-link>.</p>
 </div>
 </template>
 
@@ -46,13 +46,4 @@ export default {
 </script>
 
 <style scoped>
-.signUp {
-  margin-top: 40px;
-}
-
-span {
-  display: block;
-  margin-top: 20px;
-  font-size: 11px;
-}
 </style>
