@@ -24,7 +24,6 @@ const state = {
 
 const getters = {
   showAll: state => state.allChats,
-  showUserAll: state => state.userChats,
   showCurrentChat: state => state.currentChat,
   showAllMessages: state => state.allMessages
 }
@@ -32,72 +31,85 @@ const getters = {
 const mutations = {
   emptyChats(state) {
     state.allChats = []
-    state.userChats = []
   },
-  getAllChats(state) {
-    fire.db.collection('conversations').get().then((querySnapshot) => {
-                querySnapshot.forEach((doc) => {
-                    state.allChats.push({
-                      name: doc.data().chat_name,
-                      id: doc.id,
-                    })
-                    console.log(doc.data().chat_name)
-                })
-                state.currentChat = [state.allChats[0].name, state.allChats[0].id]
-            })
+  updateAllChats(state, chatInfo){
+    state.allChats.push({name: chatInfo.name, id: chatInfo.id})
   },
   setInitialChat(state) {
     state.currentChat = [state.allChats[0].name, state.allChats[0].id]
     console.log(state.allChats)
   },
-  addChat(state, cname) {
-    fire.db.collection('conversations').add({
-      chat_name: cname
-    }).then(function(docRef) {
-        console.log("Document written with ID: ", docRef.id)
-        state.allChats.push({
-          name: cname,
-          id: docRef.id
-        })
-      })
-      .catch(function(error) {
-        console.error("Error adding document: ", error)
-      })
-  },
   changeChat(state, chatInfo) {
     state.currentChat = [chatInfo.name, chatInfo.id]
-    console.log(state.currentChat)
   },
-  sendMessage(state,info) {
-    console.log(state.currentChat[1])
-    console.log(info, + utc)
+  addMessage(state,info) {
     state.allMessages.push({time:utc, message: info.message, user: info.user})
-    fire.db.collection('conversations').doc(info.id).collection('messages')
-        .add({
-          time:utc,
-          message: info.message,
-          user: info.user})
   },
-  getAllMessages(state,info) {
-    var ref = fire.db.collection('conversations').doc(info.id).collection('messages');
+  emptyMessages(state) {
+    state.allMessages = []
+  }
+}
 
-    ref.where('time', '>',0).orderBy('time')
-      .onSnapshot(function(querySnapshot) {
-        var count=0;
-        // TODO: HAS TO BE BETTER WAY THAN CLEARING STATE
-        state.allMessages=[]
-        querySnapshot.forEach(function(doc) {
-          console.log({id: doc.id, message: doc.data().message, sender: doc.data().user, msgid: count})
-          state.allMessages.push({id: doc.id, message: doc.data().message, sender: doc.data().user, msgid: count})
-          count+=1
-        })
-        console.log(state.allMessages)
+const actions = {
+  addChat({commit}, c_name) {
+    conversations.add({
+      chat_name: c_name
+    }).then(function(docRef){
+      commit('updateAllChats', {name: c_name, id: docRef.id})
+    }).catch(function(err){
+      console.error("Error adding document ", err)
+    })
+  },
+  getChatsFromFirebase({commit}){
+    commit('emptyChats')
+    conversations.get().then((querySnapshot)=> {
+      querySnapshot.forEach((doc)=> {
+        commit('updateAllChats', {name: doc.data().chat_name, id:doc.id})
       })
+    })
+  },
+  sendMessage({commit}, info) {
+    conversations.doc(info.id).collection('messages').add({
+      time: utc,
+      message: info.message,
+      user: info.user
+    }).then(
+      ()=>{console.log('message sent')},
+      (err)=>{alert('Oops. '+err.message)}
+    )
+  },
+  getAllMessages({commit}, info) {
+    var ref = conversations.doc(info.id).collection('messages')
+
+    ref.where('time', '>', 0).orderBy('time').onSnapshot(
+      (querySnapshot) => {
+        commit('emptyMessages')
+        let count = 0;
+        querySnapshot.forEach((doc)=>{
+          console.log(
+            {
+              id:doc.id,
+              message: doc.data().message,
+              user: doc.data().user,
+              msgid: count
+            }
+          )
+          commit('addMessage', {
+            id:doc.id,
+            message: doc.data().message,
+            user: doc.data().user,
+            msgid: count
+          })
+          count += 1;
+        })
+      }
+    )
   }
 }
 
 export default  {
   state,
   getters,
-  mutations
+  mutations,
+  actions
 }

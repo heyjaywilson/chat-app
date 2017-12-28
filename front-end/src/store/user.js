@@ -19,20 +19,19 @@ const mutations = {
    */
   setDisplayName(state) {
     state.username = fire.auth.currentUser.displayName
-    console.log(state.username)
   },
   setUserID(state) {
     state.user_id = fire.auth.currentUser.uid
   },
-  changeDisplayName(state, name) {
-    fire.auth.currentUser.updateProfile({displayName:name}).then(
-      ()=>{
-        console.log('update successful. username is ' + name)
-        state.username = name;
+}
+
+const actions = {
+  changeDisplayName({commit}, name){
+    fire.auth.currentUser.updateProfile({displayName: name}).then(
+      ()=> {
+        commit('setDisplayName')
       },
-      (err)=>{
-        alert('Oops' + err.message)
-      }
+      (err)=> {alert('Oops '+err.message)}
     )
   }
 }
@@ -40,5 +39,6 @@ const mutations = {
 export default {
   state,
   getters,
-  mutations
+  mutations,
+  actions
 }

@@ -11,7 +11,7 @@
 <script>
 import {
   mapGetters,
-  mapMutations
+  mapActions
 } from 'vuex'
 
 export default {
@@ -28,7 +28,7 @@ export default {
     }
   },
   methods: {
-    ...mapMutations([
+    ...mapActions([
       'changeDisplayName'
     ]),
     save: function() {

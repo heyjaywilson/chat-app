@@ -20,7 +20,7 @@
 
     <h1>{{showCurrentChat[0]}}</h1>
 
-    <Message v-for="mess in showAllMessages" :key="mess.id" :message="mess.message" :sender="mess.sender"></Message>
+    <Message v-for="mess in showAllMessages" :key="mess.id" :message="mess.message" :sender="mess.user"></Message>
     <div class="messageInput">
       <input type="text" v-model="message" class="messageBox">
       <button type="button" v-on:click="send">Send</button>
@@ -34,7 +34,8 @@ import Message from './Message'
 
 import {
   mapGetters,
-  mapMutations
+  mapMutations,
+  mapActions
 } from 'vuex'
 
 export default {
@@ -55,10 +56,10 @@ export default {
     }
   },
   methods: {
+    ...mapActions(['addChat', 'sendMessage','getAllMessages', 'getChatsFromFirebase']),
     ...mapMutations([
-      'getAllChats', 'addChat', 'emptyChats',
-      'setInitialChat', 'changeChat', 'sendMessage',
-      'setDisplayName', 'getAllMessages'
+      'getAllChats', 'emptyChats',
+      'setInitialChat', 'changeChat','setDisplayName'
     ]),
     addNewChat: function() {
       this.addChat(this.chatName)
@@ -86,8 +87,11 @@ export default {
         id: this.showCurrentChat[1]
       })
     }
+  },
+  created: function() {
+    this.setDisplayName();
+    this.getChatsFromFirebase();
   }
-
 }
 </script>
 

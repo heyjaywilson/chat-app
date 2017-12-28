@@ -18,7 +18,8 @@
 <script>
 import firebase from 'firebase'
 import {
-  mapMutations
+  mapMutations,
+  mapActions
 } from 'vuex'
 
 var provider = new firebase.auth.GoogleAuthProvider();
@@ -33,8 +34,11 @@ export default {
     }
   },
   methods: {
+    ...mapActions([
+      'getChatsFromFirebase'
+    ]),
     ...mapMutations([
-      'setDisplayName', 'getAllChats'
+      'setDisplayName'
     ]),
     google: function() {
       console.log(this.persist)
@@ -44,7 +48,7 @@ export default {
           firebase.auth().signInWithPopup(provider).then(
             (user) => {
               this.setDisplayName()
-              this.getAllChats()
+              this.getChatsFromFirebase()
               this.$router.replace('profile')
             },
             (err) => {
@@ -57,7 +61,7 @@ export default {
           firebase.auth().signInWithPopup(provider).then(
             (user) => {
               this.setDisplayName()
-              this.getAllChats()
+              this.getChatsFromFirebase()
               this.$router.replace('profile')
             },
             (err) => {
@@ -74,7 +78,7 @@ export default {
           firebase.auth().signInWithEmailAndPassword(this.email, this.password).then(
             (user) => {
               this.setDisplayName()
-              this.getAllChats()
+              this.getChatsFromFirebase()
               this.$router.replace('profile')
             },
             (err) => {
@@ -86,7 +90,7 @@ export default {
           firebase.auth().signInWithEmailAndPassword(this.email, this.password).then(
             (user) => {
               this.setDisplayName()
-              this.getAllChats()
+              this.getChatsFromFirebase()
               this.$router.replace('profile')
             },
             (err) => {
