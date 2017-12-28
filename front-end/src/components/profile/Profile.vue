@@ -1,7 +1,10 @@
 <template>
 <div class="m">
   <h1>{{showName}}'s Profile</h1>
-  <p>This route works</p>
+  <section>
+    <h2>My chats</h2>
+    <ul><li></li></ul>
+  </section>
 </div>
 </template>
 
