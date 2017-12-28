@@ -1,7 +1,8 @@
 import fire from '../config'
 
-var date = new Date();
-var utc = date.getTime();
+var date = new Date()
+var utc = date.getTime()
+const conversations = fire.db.collection('conversations')
 
 const state = {
   allChats: [],
