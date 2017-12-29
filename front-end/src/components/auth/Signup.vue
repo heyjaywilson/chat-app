@@ -10,40 +10,49 @@
 </template>
 
 <script>
-import firebase from 'firebase'
+import firebase from "firebase";
+
+var provider = new firebase.auth.GoogleAuthProvider();
 
 export default {
-  name: 'SignUp',
+  name: "SignUp",
   data: function() {
     return {
-      email: '',
-      password: ''
-    }
+      email: "",
+      password: ""
+    };
   },
   methods: {
     signUp: function() {
-      firebase.auth().createUserWithEmailAndPassword(this.email, this.password).then(
-        (user) => {
-          this.$router.replace('newuser')
-        },
-        (err) => {
-          alert('Oops. ' + err.message);
-        }
-      );
+      firebase
+        .auth()
+        .createUserWithEmailAndPassword(this.email, this.password)
+        .then(
+          user => {
+            this.$router.replace("newuser");
+          },
+          err => {
+            alert("Oops. " + err.message);
+          }
+        );
     },
     google: function() {
-      firebase.auth().signInWithPopup(provider).then(
-        (user) => {
-          this.$router.replace('newuser')
-        },
-        (err) => {
-          alert('Oops. ' + err.message)
-        }
-      )
+      firebase
+        .auth()
+        .signInWithPopup(provider)
+        .then(
+          user => {
+            this.$router.replace("newuser");
+          },
+          err => {
+            alert("Oops. " + err.message);
+          }
+        );
     }
   }
-}
+};
 </script>
 
 <style scoped>
+
 </style>
