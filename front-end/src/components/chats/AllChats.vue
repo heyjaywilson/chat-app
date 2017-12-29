@@ -30,74 +30,75 @@
 </template>
 
 <script>
-import Message from './Message'
+import Message from "./Message";
 
-import {
-  mapGetters,
-  mapMutations,
-  mapActions
-} from 'vuex'
+import { mapGetters, mapMutations, mapActions } from "vuex";
 
 export default {
-  name: 'AllChats',
+  name: "AllChats",
   components: {
-    'Message': Message
+    Message: Message
   },
   computed: {
-    ...mapGetters([
-      'showName', 'showAll', 'showCurrentChat',
-      'showAllMessages'
-    ])
+    ...mapGetters(["showName", "showAll", "showCurrentChat", "showAllMessages"])
   },
   data() {
     return {
-      chatName: '',
-      message: ''
-    }
+      chatName: "",
+      message: ""
+    };
   },
   methods: {
-    ...mapActions(['addChat', 'sendMessage','getAllMessages', 'getChatsFromFirebase']),
+    ...mapActions([
+      "addChat",
+      "sendMessage",
+      "getAllMessages",
+      "getChatsFromFirebase"
+    ]),
     ...mapMutations([
-      'getAllChats', 'emptyChats',
-      'setInitialChat', 'changeChat','setDisplayName'
+      "getAllChats",
+      "emptyChats",
+      "setInitialChat",
+      "changeChat",
+      "setDisplayName"
     ]),
     addNewChat: function() {
-      this.addChat(this.chatName)
-      this.chatName = ''
+      this.addChat(this.chatName);
+      this.chatName = "";
     },
     selectChat: function(info) {
-      this.changeChat(info)
+      this.changeChat(info);
       this.getAllMessages({
         id: this.showCurrentChat[1]
-      })
+      });
     },
     send: function() {
-      console.log(this.showName)
+      console.log(this.showName);
       this.sendMessage({
         id: this.showCurrentChat[1],
         message: this.message,
         user: this.showName
-      })
-      console.log('Message being sent: ' + this.message)
+      });
+      console.log("Message being sent: " + this.message);
 
-      this.message = ''
+      this.message = "";
     },
     getMessages: function() {
       this.getAllMessages({
         id: this.showCurrentChat[1]
-      })
+      });
     }
   },
   created: function() {
     this.setDisplayName();
     this.getChatsFromFirebase();
   }
-}
+};
 </script>
 
 <style>
 ul {
-  text-align: left
+  text-align: left;
 }
 
 h1 {
@@ -105,7 +106,7 @@ h1 {
   font-size: 1.85em;
 }
 
-.msg>h1 {
+.msg > h1 {
   margin: 0;
   padding: 0;
 }
@@ -130,7 +131,7 @@ h1 {
   text-align: left;
 }
 
-.list>ul>li {
+.list > ul > li {
   color: rgb(100, 181, 135);
   font-size: 1.25em;
 }

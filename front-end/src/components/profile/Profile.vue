@@ -3,32 +3,29 @@
   <h1>{{showName}}'s Profile</h1>
   <section>
     <h2>My chats</h2>
-    <ul><li></li></ul>
+    <ul>
+      <li></li>
+    </ul>
   </section>
 </div>
 </template>
 
 <script>
-import {
-  mapGetters,
-  mapMutations
-} from 'vuex';
+import { mapGetters, mapMutations, mapActions } from "vuex";
 
 export default {
-  name: 'Profile',
+  name: "Profile",
   computed: {
-    ...mapGetters([
-      'showName'
-    ])
+    ...mapGetters(["showName"])
   },
   methods: {
-    ...mapMutations([
-      'setDisplayName'
-    ])
+    ...mapMutations(["setDisplayName"]),
+    ...mapActions(["getUserChats"])
   },
 
   created: function() {
     this.setDisplayName();
+    this.getUserChats();
   }
-}
+};
 </script>

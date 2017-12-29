@@ -6,13 +6,13 @@
 
 <script>
 export default {
-  name: 'Message',
-  props: ['message', 'sender']
-}
+  name: "Message",
+  props: ["message", "sender"]
+};
 </script>
 
 <style lang="css">
-.message{
+.message {
   text-align: left;
 }
 .sender {
