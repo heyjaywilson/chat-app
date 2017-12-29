@@ -9,34 +9,28 @@
 </template>
 
 <script>
-import {
-  mapGetters,
-  mapActions
-} from 'vuex'
+import { mapGetters, mapActions } from "vuex";
 
 export default {
-  name: 'Settings',
+  name: "Settings",
   computed: {
-    ...mapGetters([
-      'showName'
-    ])
+    ...mapGetters(["showName"])
   },
   data() {
     return {
       // used to hold new username
-      username: ''
-    }
+      username: ""
+    };
   },
   methods: {
-    ...mapActions([
-      'changeDisplayName'
-    ]),
+    ...mapActions(["changeDisplayName", "updateDBName"]),
     save: function() {
       this.changeDisplayName(this.username);
-      this.username = ''
+      this.username = "";
+      this.updateDBName();
     }
   }
-}
+};
 </script>
 
 <style>

@@ -19,11 +19,12 @@ export default {
     ...mapGetters(["showName"])
   },
   methods: {
-    ...mapMutations(["setDisplayName"])
+    ...mapMutations(["setDisplayName", "setUserID"])
   },
 
   created: function() {
     this.setDisplayName();
+    this.setUserID();
   }
 };
 </script>

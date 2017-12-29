@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import { mapMutations, mapGetters } from "vuex";
+import { mapMutations, mapGetters, mapActions } from "vuex";
 
 export default {
   name: "NewUser",
@@ -23,10 +23,12 @@ export default {
     };
   },
   methods: {
-    ...mapMutations(["changeDisplayName", "setUserID"]),
+    ...mapActions(["addUserToDB", "changeDisplayName"]),
+    ...mapMutations(["setUserID"]),
     save: function() {
       this.changeDisplayName(this.username);
       this.setUserID();
+      this.addUserToDB();
       this.username = "";
       console.log(this.showID);
       this.$router.replace("profile");
