@@ -19,13 +19,11 @@ export default {
     ...mapGetters(["showName"])
   },
   methods: {
-    ...mapMutations(["setDisplayName"]),
-    ...mapActions(["getUserChats"])
+    ...mapMutations(["setDisplayName"])
   },
 
   created: function() {
     this.setDisplayName();
-    this.getUserChats();
   }
 };
 </script>

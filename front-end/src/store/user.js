@@ -12,7 +12,8 @@ const state = {
 /** Getters**/
 const getters = {
   showName: state => state.username,
-  showID: state => state.user_id
+  showID: state => state.user_id,
+  showUserChats: state => state.user_chats
 };
 
 /**Mutations**/
@@ -41,19 +42,6 @@ const actions = {
         alert("Oops " + err.message);
       }
     );
-  },
-  getUserChats({ commit }) {
-    conversations
-      .where("name", "==", state.username)
-      .get()
-      .then(function(querySnapshot) {
-        querySnapshot.forEach(function(doc) {
-          console.log(doc.id + " " + doc.name);
-        });
-      })
-      .catch(function(error) {
-        console.log("Oops. " + error.message);
-      });
   }
 };
 

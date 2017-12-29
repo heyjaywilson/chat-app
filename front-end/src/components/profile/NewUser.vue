@@ -10,36 +10,27 @@
 </template>
 
 <script>
-import {
-  mapMutations,
-  mapGetters
-} from "vuex";
+import { mapMutations, mapGetters } from "vuex";
 
 export default {
-  name: 'NewUser',
+  name: "NewUser",
   computed: {
-    ...mapGetters([
-      'showName',
-      'showID'
-    ])
+    ...mapGetters(["showName", "showID"])
   },
   data() {
     return {
-      username: ''
-    }
+      username: ""
+    };
   },
   methods: {
-    ...mapMutations([
-      'changeDisplayName',
-      'setUserID'
-    ]),
+    ...mapMutations(["changeDisplayName", "setUserID"]),
     save: function() {
-      this.changeDisplayName(this.username)
-      this.setUserID()
-      this.username = ''
-      console.log(this.showID)
-      this.$router.replace('profile')
+      this.changeDisplayName(this.username);
+      this.setUserID();
+      this.username = "";
+      console.log(this.showID);
+      this.$router.replace("profile");
     }
   }
-}
+};
 </script>
